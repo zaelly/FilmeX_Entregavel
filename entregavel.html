@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FILMEX TV — Entregável</title>
+<style>
+  :root{
+    --bg: #0a0a0f;
+    --bg-alt: #111118;
+    --card: #16161f;
+    --border: #262633;
+    --red: #e50914;
+    --red-dark: #b0060f;
+    --text: #f4f4f6;
+    --text-dim: #9a9aa8;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(229,9,20,0.18), transparent 60%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+    line-height:1.5;
+    padding-bottom:60px;
+  }
+
+  header{
+    text-align:center;
+    padding:56px 20px 32px;
+  }
+  .logo{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-size:2.4rem;
+    font-weight:800;
+    letter-spacing:1px;
+  }
+  .logo span.tv{
+    color:var(--red);
+  }
+  header p{
+    color:var(--text-dim);
+    margin-top:10px;
+    font-size:1.05rem;
+  }
+
+  main{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 20px;
+  }
+
+  .download-card{
+    background:linear-gradient(145deg, var(--card), var(--bg-alt));
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:36px 28px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,0.45);
+    margin-bottom:48px;
+  }
+  .download-card h2{
+    margin:0 0 8px;
+    font-size:1.4rem;
+  }
+  .download-card p{
+    color:var(--text-dim);
+    margin:0 0 26px;
+    font-size:0.95rem;
+  }
+  .btn-download{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:linear-gradient(135deg, var(--red), var(--red-dark));
+    color:#fff;
+    text-decoration:none;
+    font-weight:700;
+    font-size:1.1rem;
+    padding:16px 34px;
+    border-radius:14px;
+    box-shadow:0 10px 30px rgba(229,9,20,0.4);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-download:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 36px rgba(229,9,20,0.55);
+  }
+  .btn-download svg{width:22px;height:22px;flex:none;}
+
+  .badge{
+    display:inline-block;
+    margin-top:18px;
+    font-size:0.78rem;
+    color:var(--text-dim);
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    padding:6px 14px;
+    border-radius:999px;
+  }
+
+  .instructions-title{
+    text-align:center;
+    margin-bottom:6px;
+    font-size:1.6rem;
+  }
+  .instructions-sub{
+    text-align:center;
+    color:var(--text-dim);
+    margin-bottom:40px;
+    font-size:0.95rem;
+  }
+
+  .steps{
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+  }
+  .step{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    display:flex;
+    gap:22px;
+    align-items:flex-start;
+  }
+  .step-number{
+    flex:none;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--red), var(--red-dark));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:800;
+    font-size:1.1rem;
+  }
+  .step-body{
+    flex:1;
+    min-width:0;
+  }
+  .step-text{
+    font-size:1.02rem;
+    margin-bottom:14px;
+  }
+  .step-text b{color:#fff;}
+  .step img{
+    width:100%;
+    max-width:280px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    display:block;
+  }
+
+  .dns-box{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:12px 16px;
+    margin-top:6px;
+    flex-wrap:wrap;
+  }
+  .dns-code{
+    font-family:'Consolas', 'Courier New', monospace;
+    color:var(--red);
+    font-size:1.05rem;
+    font-weight:700;
+    flex:1;
+    min-width:180px;
+  }
+  .copy-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--card);
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:9px 16px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:0.88rem;
+    font-weight:600;
+    transition:background .15s ease, border-color .15s ease;
+  }
+  .copy-btn:hover{
+    border-color:var(--red);
+  }
+  .copy-btn.copied{
+    background:var(--red);
+    border-color:var(--red);
+    color:#fff;
+  }
+  .copy-btn svg{width:15px;height:15px;}
+
+  footer{
+    text-align:center;
+    color:var(--text-dim);
+    font-size:0.8rem;
+    margin-top:60px;
+  }
+
+  @media (max-width:560px){
+    .logo{font-size:1.9rem;}
+    .step{flex-direction:column;}
+    .step-number{margin-bottom:4px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">FILMEX<span class="tv">TV</span></div>
+  <p>Guia de instalação e configuração do aplicativo</p>
+</header>
+
+<main>
+
+  <section class="download-card">
+    <h2>Baixe o aplicativo para o seu celular</h2>
+    <p>Toque no botão abaixo para baixar o APK. Após o download, siga o passo a passo logo abaixo.</p>
+    <a class="btn-download" href="https://www.mediafire.com/file/sccb1clnye3ix4o/smart-play-1.17.apk" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Baixar aplicativo
+    </a>
+    <br>
+    <span class="badge">Android · APK · smart-play-1.17</span>
+  </section>
+
+  <h2 class="instructions-title">Após o download, faça o seguinte:</h2>
+  <p class="instructions-sub">Siga os 4 passos abaixo, na ordem, para configurar o DNS do seu celular.</p>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-number">1</div>
+      <div class="step-body">
+        <div class="step-text">Vá até as <b>configurações</b> do seu celular.</div>
+        <img src="imgs/image1.jpg" alt="Passo 1 - Configurações do celular">
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">2</div>
+      <div class="step-body">
+        <div class="step-text">Clique em <b>"CONEXÃO E COMPARTILHAMENTO"</b>.</div>
+        <img src="imgs/image2.jpg" alt="Passo 2 - Conexão e compartilhamento">
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">3</div>
+      <div class="step-body">
+        <div class="step-text">Clique em <b>"DNS PRIVADO"</b>.</div>
+        <img src="imgs/image3.jpg" alt="Passo 3 - DNS privado">
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-number">4</div>
+      <div class="step-body">
+        <div class="step-text">Troque o DNS para <b>privado</b> e coloque o seguinte endereço:</div>
+        <div class="dns-box">
+          <span class="dns-code" id="dnsValue">dns.adguard.com</span>
+          <button class="copy-btn" id="copyBtn" onclick="copyDns()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span id="copyLabel">Copiar</span>
+          </button>
+        </div>
+        <img src="imgs/image4.jpg" alt="Passo 4 - Inserir DNS privado" style="margin-top:16px;">
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<footer>
+  FILMEX TV — Entregável de instalação
+</footer>
+
+<script>
+function copyDns(){
+  const text = document.getElementById('dnsValue').textContent;
+  navigator.clipboard.writeText(text).then(function(){
+    const btn = document.getElementById('copyBtn');
+    const label = document.getElementById('copyLabel');
+    label.textContent = 'Copiado!';
+    btn.classList.add('copied');
+    setTimeout(function(){
+      label.textContent = 'Copiar';
+      btn.classList.remove('copied');
+    }, 1800);
+  });
+}
+</script>
+
+</body>
+</html>
