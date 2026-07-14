@@ -149,6 +149,28 @@
     font-size:0.95rem;
   }
 
+  .video-help{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:22px;
+    text-align:center;
+    margin-bottom:40px;
+  }
+  .video-help p{
+    color:var(--text-dim);
+    margin:0 0 16px;
+    font-size:0.95rem;
+  }
+  .video-help video{
+    width:100%;
+    max-width:360px;
+    border-radius:14px;
+    border:1px solid var(--border);
+    display:block;
+    margin:0 auto;
+  }
+
   .steps{
     display:flex;
     flex-direction:column;
@@ -306,6 +328,11 @@
 
   <h2 class="instructions-title">Após o download, faça o seguinte:</h2>
   <p class="instructions-sub">Siga os 4 passos abaixo, na ordem, para configurar o DNS do seu celular.</p>
+
+  <section class="video-help">
+    <p>Prefere ver em vídeo? Assista ao passo a passo completo abaixo.</p>
+    <video controls playsinline preload="metadata" src="imgs/passoVideo.mp4"></video>
+  </section>
 
   <div class="steps">
 
