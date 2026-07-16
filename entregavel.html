@@ -141,6 +141,34 @@ src="https://www.facebook.com/tr?id=991082287159761&ev=PageView&noscript=1"
     box-shadow:0 14px 36px rgba(27,208,115,0.5);
   }
   .btn-download svg{width:22px;height:22px;flex:none;}
+  .btn-download-alt{
+    background:linear-gradient(135deg, var(--blue), #062f6e);
+    box-shadow:0 10px 30px rgba(8,116,245,0.35);
+  }
+  .btn-download-alt:hover{
+    box-shadow:0 14px 36px rgba(8,116,245,0.5);
+  }
+
+  .download-options{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:32px;
+    margin-top:6px;
+  }
+  .download-option{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:12px;
+  }
+  .download-note{
+    margin:0;
+    max-width:230px;
+    color:var(--text-dim);
+    font-size:0.85rem;
+  }
+  .download-note b{color:#fff;}
 
   .badge{
     display:inline-block;
@@ -186,6 +214,32 @@ src="https://www.facebook.com/tr?id=991082287159761&ev=PageView&noscript=1"
     border:1px solid var(--border);
     display:block;
     margin:0 auto;
+  }
+
+  .platform-toggle{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:32px;
+  }
+  .toggle-btn{
+    background:var(--bg-alt);
+    border:1px solid var(--border);
+    color:var(--text-dim);
+    padding:10px 28px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.95rem;
+    cursor:pointer;
+    transition:background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .toggle-btn.active{
+    background:linear-gradient(135deg, var(--cyan), var(--blue));
+    color:#fff;
+    border-color:transparent;
+  }
+  .platform-panel[hidden]{
+    display:none;
   }
 
   .steps{
@@ -334,62 +388,123 @@ src="https://www.facebook.com/tr?id=991082287159761&ev=PageView&noscript=1"
 
   <section class="download-card">
     <h2>Baixe o aplicativo para o seu celular</h2>
-    <p>Toque no botão abaixo para baixar o APK. Após o download, siga o passo a passo logo abaixo.</p>
-    <a class="btn-download" href="https://www.mediafire.com/file/sccb1clnye3ix4o/smart-play-1.17.apk" target="_blank" rel="noopener noreferrer">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-      Baixar aplicativo
-    </a>
-    <br>
-    <span class="badge">Android · APK · smart-play-1.17</span>
+    <p>Toque no botão do seu aparelho para baixar o app. Após o download, siga o passo a passo logo abaixo.</p>
+    <div class="download-options">
+      <div class="download-option">
+        <a class="btn-download" href="https://www.mediafire.com/file/sccb1clnye3ix4o/smart-play-1.17.apk" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar aplicativo
+        </a>
+        <p class="download-note">Este download é para <b>Android</b></p>
+        <span class="badge">Android · APK · smart-play-1.17</span>
+      </div>
+      <div class="download-option">
+        <a class="btn-download btn-download-alt" href="https://apps.apple.com/br/app/comp-study-farm-manager/id6756660667" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Baixar na App Store
+        </a>
+        <p class="download-note">Este download é para <b>iPhone</b></p>
+      </div>
+    </div>
   </section>
 
   <h2 class="instructions-title">Após o download, faça o seguinte:</h2>
-  <p class="instructions-sub">Siga os 4 passos abaixo, na ordem, para configurar o DNS do seu celular.</p>
+  <p class="instructions-sub">Selecione o seu aparelho e siga os passos abaixo, na ordem.</p>
 
-  <section class="video-help">
-    <p>Prefere ver em vídeo? Assista ao passo a passo completo abaixo.</p>
-    <video controls playsinline preload="metadata" src="imgs/passoVideo.mp4"></video>
-  </section>
+  <div class="platform-toggle" id="platformToggle">
+    <button class="toggle-btn active" data-platform="android" type="button">Android</button>
+    <button class="toggle-btn" data-platform="iphone" type="button">iPhone</button>
+  </div>
 
-  <div class="steps">
+  <div class="platform-panel" data-panel="android">
 
-    <div class="step">
-      <div class="step-number">1</div>
-      <div class="step-body">
-        <div class="step-text">Vá até as <b>configurações</b> do seu celular.</div>
-        <img src="imgs/image1.jpg" alt="Passo 1 - Configurações do celular">
-      </div>
-    </div>
+    <section class="video-help">
+      <p>Prefere ver em vídeo? Assista ao passo a passo completo abaixo.</p>
+      <video controls playsinline preload="metadata" src="imgs/passoVideo.mp4"></video>
+    </section>
 
-    <div class="step">
-      <div class="step-number">2</div>
-      <div class="step-body">
-        <div class="step-text">Clique em <b>"CONEXÃO E COMPARTILHAMENTO"</b>.</div>
-        <img src="imgs/image2.jpg" alt="Passo 2 - Conexão e compartilhamento">
-      </div>
-    </div>
+    <div class="steps">
 
-    <div class="step">
-      <div class="step-number">3</div>
-      <div class="step-body">
-        <div class="step-text">Clique em <b>"DNS PRIVADO"</b>.</div>
-        <img src="imgs/image3.jpg" alt="Passo 3 - DNS privado">
-      </div>
-    </div>
-
-    <div class="step">
-      <div class="step-number">4</div>
-      <div class="step-body">
-        <div class="step-text">Troque o DNS para <b>privado</b> e coloque o seguinte endereço:</div>
-        <div class="dns-box">
-          <span class="dns-code" id="dnsValue">dns.adguard.com</span>
-          <button class="copy-btn" id="copyBtn" onclick="copyDns()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span id="copyLabel">Copiar</span>
-          </button>
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-body">
+          <div class="step-text">Vá até as <b>configurações</b> do seu celular.</div>
+          <img src="imgs/image1.jpg" alt="Passo 1 - Configurações do celular">
         </div>
-        <img src="imgs/image4.jpg" alt="Passo 4 - Inserir DNS privado" style="margin-top:16px;">
       </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-body">
+          <div class="step-text">Clique em <b>"CONEXÃO E COMPARTILHAMENTO"</b>.</div>
+          <img src="imgs/image2.jpg" alt="Passo 2 - Conexão e compartilhamento">
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-body">
+          <div class="step-text">Clique em <b>"DNS PRIVADO"</b>.</div>
+          <img src="imgs/image3.jpg" alt="Passo 3 - DNS privado">
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-body">
+          <div class="step-text">Troque o DNS para <b>privado</b> e coloque o seguinte endereço:</div>
+          <div class="dns-box">
+            <span class="dns-code" id="dnsValue">dns.adguard.com</span>
+            <button class="copy-btn" id="copyBtn" onclick="copyDns('dnsValue','copyBtn','copyLabel')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span id="copyLabel">Copiar</span>
+            </button>
+          </div>
+          <img src="imgs/image4.jpg" alt="Passo 4 - Inserir DNS privado" style="margin-top:16px;">
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="platform-panel" data-panel="iphone" hidden>
+
+    <section class="video-help">
+      <p>Prefere ver em vídeo? Assista ao passo a passo completo abaixo.</p>
+      <video controls playsinline preload="metadata" src="imgs/passoIphone.mp4"></video>
+    </section>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-body">
+          <div class="step-text">Abra o app e digite o código de acesso <b>Map</b> (ou <b>MAP</b>/<b>map</b>) na <b>barra de pesquisa</b> para acessar o app de filmes e séries.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-body">
+          <div class="step-text">Selecione o idioma <b>PORTUGUÊS</b>.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-body">
+          <div class="step-text">Para os anúncios funcionarem perfeitamente, configure o DNS privado do seu iPhone com o seguinte endereço:</div>
+          <div class="dns-box">
+            <span class="dns-code" id="dnsValueIphone">dns.adguard.com</span>
+            <button class="copy-btn" id="copyBtnIphone" onclick="copyDns('dnsValueIphone','copyBtnIphone','copyLabelIphone')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span id="copyLabelIphone">Copiar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </div>
@@ -407,11 +522,11 @@ src="https://www.facebook.com/tr?id=991082287159761&ev=PageView&noscript=1"
 </footer>
 
 <script>
-function copyDns(){
-  const text = document.getElementById('dnsValue').textContent;
+function copyDns(valueId, btnId, labelId){
+  const text = document.getElementById(valueId).textContent;
   navigator.clipboard.writeText(text).then(function(){
-    const btn = document.getElementById('copyBtn');
-    const label = document.getElementById('copyLabel');
+    const btn = document.getElementById(btnId);
+    const label = document.getElementById(labelId);
     label.textContent = 'Copiado!';
     btn.classList.add('copied');
     setTimeout(function(){
@@ -420,6 +535,17 @@ function copyDns(){
     }, 1800);
   });
 }
+
+document.querySelectorAll('.toggle-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.toggle-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    const platform = btn.dataset.platform;
+    document.querySelectorAll('.platform-panel').forEach(function(panel){
+      panel.hidden = panel.dataset.panel !== platform;
+    });
+  });
+});
 </script>
 
 </body>
